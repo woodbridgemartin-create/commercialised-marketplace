@@ -39,11 +39,25 @@ export function BecomePartnerPage() {
     const value = target instanceof HTMLInputElement && target.type === 'checkbox' ? target.checked : target.value
     setForm(prev => ({ ...prev, [target.name]: value }))
   }
+async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    
+    const response = await fetch("https://formspree.io/f/mkopjyze", {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setSubmitted(true)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (response.ok) {
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      alert("There was an error submitting your application. Please try again or contact hello@commercialised.co.uk.");
+    }
+  }
   }
 
   if (submitted) {
