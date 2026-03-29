@@ -34,10 +34,20 @@ export function SubmitOpportunityPage() {
     setForm(prev => ({ ...prev, [target.name]: value }))
   }
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setSubmitted(true)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+ async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const response = await fetch("https://formspree.io/f/xjgpylek", {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    });
+
+    if (response.ok) {
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      alert("Submission error. Please try again.");
+    }
   }
 
   if (submitted) {
