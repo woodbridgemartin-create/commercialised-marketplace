@@ -8,10 +8,25 @@ export function ContactPage() {
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
+async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    
+    const response = await fetch("https://formspree.io/f/xbdpgwar", {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setSubmitted(true)
+    if (response.ok) {
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      alert("We couldn't send your message. Please try again or email hello@commercialised.co.uk directly.");
+    }
+  }
   }
 
   return (
