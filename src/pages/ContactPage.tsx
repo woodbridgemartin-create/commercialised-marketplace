@@ -27,7 +27,7 @@ async function handleSubmit(e: React.FormEvent) {
       alert("We couldn't send your message. Please try again or email hello@commercialised.co.uk directly.");
     }
   }
-  }
+  
 
   return (
     <div className="bg-background">
