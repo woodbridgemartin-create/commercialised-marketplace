@@ -39,7 +39,8 @@ export function BecomePartnerPage() {
     const value = target instanceof HTMLInputElement && target.type === 'checkbox' ? target.checked : target.value
     setForm(prev => ({ ...prev, [target.name]: value }))
   }
-async function handleSubmit(e: React.FormEvent) {
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     
     const response = await fetch("https://formspree.io/f/mkopjyze", {
@@ -57,7 +58,6 @@ async function handleSubmit(e: React.FormEvent) {
     } else {
       alert("There was an error submitting your application. Please try again or contact hello@commercialised.co.uk.");
     }
-  }
   }
 
   if (submitted) {
@@ -129,7 +129,7 @@ async function handleSubmit(e: React.FormEvent) {
                     type={field.type || 'text'}
                     name={field.name}
                     required={field.required}
-                    value={(form as Record<string, string>)[field.name]}
+                    value={(form as Record<string, any>)[field.name]}
                     onChange={handleChange}
                     className="w-full px-3 py-2.5 rounded-md border text-sm bg-background focus:outline-none focus:ring-2 transition-all"
                     style={{ borderColor: 'hsl(220 13% 88%)', color: 'hsl(215 28% 17%)' }}
