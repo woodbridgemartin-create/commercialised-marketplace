@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+
 const faqs = [
   {
     section: 'For Businesses & Innovators',
@@ -55,3 +58,71 @@ const faqs = [
     ],
   },
 ]
+
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="border-b" style={{ borderColor: 'hsl(220 13% 91%)' }}>
+      <button
+        className="w-full text-left py-5 flex items-start justify-between gap-4"
+        onClick={() => setOpen(!open)}
+      >
+        <span className="text-sm font-medium" style={{ color: 'hsl(215 28% 17%)' }}>{q}</span>
+        <ChevronDown
+          size={16}
+          className="flex-shrink-0 mt-0.5 transition-transform duration-200"
+          style={{ color: 'hsl(220 9% 55%)', transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
+        />
+      </button>
+      {open && (
+        <div className="pb-5">
+          <p className="text-sm leading-relaxed" style={{ color: 'hsl(220 9% 46%)' }}>{a}</p>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export function FaqsPage() {
+  return (
+    <div className="bg-background">
+      <div style={{ background: 'hsl(215 28% 17%)' }} className="py-24 px-6 text-center">
+        <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: 'hsl(43 96% 70%)' }}>Help</p>
+        <h1 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'DM Serif Display', serif", color: 'hsl(0 0% 98%)' }}>
+          Frequently Asked Questions
+        </h1>
+        <p className="text-base max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.6)' }}>
+          Everything you need to know about the Commercialised platform.
+        </p>
+      </div>
+
+      <div className="max-w-3xl mx-auto px-6 py-16 space-y-12">
+        {faqs.map(section => (
+          <div key={section.section}>
+            <h2 className="text-base font-semibold mb-1 pb-3 border-b-2" style={{ color: 'hsl(215 28% 17%)', borderColor: 'hsl(43 96% 56%)' }}>
+              {section.section}
+            </h2>
+            <div>
+              {section.items.map(item => (
+                <FaqItem key={item.q} q={item.q} a={item.a} />
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <div className="text-center pt-8">
+          <p className="text-sm mb-4" style={{ color: 'hsl(220 9% 55%)' }}>
+            Can't find what you're looking for?
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md font-semibold text-sm no-underline"
+            style={{ background: 'hsl(215 28% 17%)', color: 'hsl(0 0% 98%)' }}
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
