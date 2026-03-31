@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { ArrowRight, CheckCircle2, Clock, Users, TrendingUp, Lightbulb, Shield, Zap, Star, Globe, Factory } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Clock, Users, TrendingUp, Lightbulb, Shield, Zap, Star, Globe, Factory, Briefcase } from 'lucide-react'
 
 const steps = [
   {
@@ -25,14 +25,6 @@ const audiences = [
   { icon: <TrendingUp size={20} />, label: 'Businesses with products not scaling' },
   { icon: <Clock size={20} />, label: 'Companies with dormant opportunities' },
   { icon: <Star size={20} />, label: 'Innovation teams' },
-]
-
-const partnerBenefits = [
-  'Receive qualified, pre-reviewed commercialisation opportunities',
-  'Connect with businesses ready to scale or launch',
-  'Access projects across multiple sectors and industries',
-  'Early partner access to marketplace opportunities',
-  'Build your portfolio with diverse clients',
 ]
 
 export function HomePage() {
@@ -93,6 +85,47 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Trust & Legal Summary Section - ADDED HERE */}
+      <section className="py-16 border-t border-b" style={{ background: 'hsl(215 28% 19%)', borderColor: 'rgba(255,255,255,0.1)' }}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="flex items-start gap-4">
+              <div className="p-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                <Shield className="text-yellow-500" size={20} />
+              </div>
+              <div>
+                <h4 className="text-white font-bold text-sm mb-1 uppercase tracking-wide">Redaction Protocol</h4>
+                <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                  Your identity and technical secrets are removed before any initial partner review. We only share "Redacted Teasers."
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="p-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                <CheckCircle2 className="text-yellow-500" size={20} />
+              </div>
+              <div>
+                <h4 className="text-white font-bold text-sm mb-1 uppercase tracking-wide">NDA-First Disclosure</h4>
+                <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                  Sensitive data is only released after a digitally signed Mutual NDA is in place between both parties.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="p-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                <Briefcase className="text-yellow-500" size={20} />
+              </div>
+              <div>
+                <h4 className="text-white font-bold text-sm mb-1 uppercase tracking-wide">UK Legal Framework</h4>
+                <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                  All marketplace interactions are governed by English Law and protected under Leadsopedia Limited's UK jurisdiction.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* NEW ADDITION ONLY: Partner Network */}
       <section className="py-24 border-t border-border" style={{ background: 'hsl(215 14% 97%)' }}>
         <div className="max-w-7xl mx-auto px-6">
@@ -147,8 +180,6 @@ export function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Rest of your Credibility & Footer section stays exactly as you had it... */}
     </div>
   )
 }
